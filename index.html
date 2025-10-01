@@ -1,0 +1,758 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🕌 Allah-Dep Casino | Восточное казино</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #0f2027 0%, #203a43 50%, #2c5364 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        .stars {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+
+        .star {
+            position: absolute;
+            width: 3px;
+            height: 3px;
+            background: #ffd700;
+            border-radius: 50%;
+            animation: twinkle 3s infinite;
+            box-shadow: 0 0 5px #ffd700;
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 1; }
+        }
+
+        .moon {
+            position: fixed;
+            top: 50px;
+            right: 50px;
+            width: 120px;
+            height: 120px;
+            background: #ffd700;
+            border-radius: 50%;
+            box-shadow: 0 0 60px rgba(255, 215, 0, 0.6), inset -20px -10px 0 rgba(0, 0, 0, 0.1);
+            animation: moonGlow 3s ease-in-out infinite;
+        }
+
+        @keyframes moonGlow {
+            0%, 100% { box-shadow: 0 0 60px rgba(255, 215, 0, 0.6), inset -20px -10px 0 rgba(0, 0, 0, 0.1); }
+            50% { box-shadow: 0 0 100px rgba(255, 215, 0, 0.8), inset -20px -10px 0 rgba(0, 0, 0, 0.1); }
+        }
+
+        .casino-container {
+            background: linear-gradient(145deg, #1a1a2e, #16213e);
+            border-radius: 30px;
+            padding: 50px 40px;
+            box-shadow: 0 20px 80px rgba(0, 0, 0, 0.5), inset 0 0 50px rgba(212, 175, 55, 0.2);
+            border: 3px solid #d4af37;
+            max-width: 900px;
+            width: 100%;
+            position: relative;
+            z-index: 10;
+        }
+
+        .ornament {
+            position: absolute;
+            width: 80px;
+            height: 80px;
+            opacity: 0.3;
+        }
+
+        .ornament-tl { top: -20px; left: -20px; }
+        .ornament-tr { top: -20px; right: -20px; transform: scaleX(-1); }
+        .ornament-bl { bottom: -20px; left: -20px; transform: scaleY(-1); }
+        .ornament-br { bottom: -20px; right: -20px; transform: scale(-1); }
+
+        .casino-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .casino-title {
+            font-size: 3.5rem;
+            color: #d4af37;
+            text-shadow: 0 0 20px #d4af37, 0 0 40px #ff8c00, 0 4px 6px rgba(0, 0, 0, 0.5);
+            animation: glow 2s ease-in-out infinite;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        @keyframes glow {
+            0%, 100% { text-shadow: 0 0 20px #d4af37, 0 0 40px #ff8c00, 0 4px 6px rgba(0, 0, 0, 0.5); }
+            50% { text-shadow: 0 0 30px #d4af37, 0 0 60px #ff8c00, 0 4px 6px rgba(0, 0, 0, 0.5); }
+        }
+
+        .casino-subtitle {
+            font-size: 1.2rem;
+            color: #40e0d0;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .slot-machine {
+            background: linear-gradient(145deg, #16213e, #0f1729);
+            border-radius: 20px;
+            padding: 40px;
+            border: 4px solid #d4af37;
+            box-shadow: inset 0 0 30px rgba(212, 175, 55, 0.3);
+            margin-bottom: 30px;
+            position: relative;
+        }
+
+        .pattern-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: repeating-linear-gradient(
+                45deg,
+                transparent,
+                transparent 10px,
+                rgba(212, 175, 55, 0.03) 10px,
+                rgba(212, 175, 55, 0.03) 20px
+            );
+            pointer-events: none;
+            border-radius: 16px;
+        }
+
+        .slots-container {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 40px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .slot {
+            width: 100px;
+            height: 140px;
+            background: linear-gradient(180deg, #0a0a0a 0%, #1a1a1a 100%);
+            border: 3px solid #d4af37;
+            border-radius: 15px;
+            overflow: hidden;
+            position: relative;
+            box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.8), 0 5px 15px rgba(0, 0, 0, 0.5);
+        }
+
+        .slot-reel {
+            position: absolute;
+            width: 100%;
+            top: 0;
+            transition: top 0.1s linear;
+        }
+
+        .slot-symbol {
+            height: 140px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            font-weight: bold;
+            color: #d4af37;
+            text-shadow: 0 0 15px #d4af37, 0 0 30px #ff8c00;
+            background: linear-gradient(180deg, rgba(212, 175, 55, 0.1) 0%, transparent 100%);
+        }
+
+        .slot-highlight {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 3px solid transparent;
+            border-radius: 12px;
+            pointer-events: none;
+        }
+
+        .slot-highlight.active {
+            border-color: #40e0d0;
+            box-shadow: 0 0 20px #40e0d0, inset 0 0 20px rgba(64, 224, 208, 0.3);
+            animation: highlightPulse 0.5s ease-in-out;
+        }
+
+        @keyframes highlightPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .controls {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .spin-button {
+            padding: 20px 60px;
+            font-size: 1.8rem;
+            font-weight: bold;
+            background: linear-gradient(145deg, #d4af37, #f4c542);
+            color: #1a1a2e;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 8px 20px rgba(212, 175, 55, 0.4), inset 0 -4px 0 rgba(0, 0, 0, 0.3);
+            transition: all 0.2s;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .spin-button:hover:not(:disabled) {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 25px rgba(212, 175, 55, 0.5), inset 0 -4px 0 rgba(0, 0, 0, 0.3);
+        }
+
+        .spin-button:active:not(:disabled) {
+            transform: translateY(2px);
+            box-shadow: 0 4px 10px rgba(212, 175, 55, 0.3), inset 0 4px 0 rgba(0, 0, 0, 0.3);
+        }
+
+        .spin-button:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        .spin-button::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        .spin-button:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        .spin-button span {
+            position: relative;
+            z-index: 1;
+        }
+
+        .stats {
+            display: flex;
+            justify-content: space-around;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .stat-box {
+            background: linear-gradient(145deg, rgba(212, 175, 55, 0.2), rgba(212, 175, 55, 0.1));
+            padding: 20px 30px;
+            border-radius: 15px;
+            border: 2px solid #d4af37;
+            text-align: center;
+            min-width: 150px;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            color: #a0aec0;
+            margin-bottom: 5px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .stat-value {
+            font-size: 2rem;
+            color: #d4af37;
+            font-weight: bold;
+            text-shadow: 0 2px 8px rgba(212, 175, 55, 0.5);
+        }
+
+        .message {
+            text-align: center;
+            margin-top: 30px;
+            font-size: 1.5rem;
+            font-weight: bold;
+            min-height: 40px;
+            color: #40e0d0;
+            text-shadow: 0 0 10px rgba(64, 224, 208, 0.5);
+            animation: messageSlide 0.5s ease-out;
+        }
+
+        @keyframes messageSlide {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fireworks {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1000;
+        }
+
+        .firework {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            border-radius: 50%;
+            animation: explode 1s ease-out forwards;
+        }
+
+        @keyframes explode {
+            0% {
+                transform: translate(0, 0);
+                opacity: 1;
+            }
+            100% {
+                transform: translate(var(--tx), var(--ty));
+                opacity: 0;
+            }
+        }
+
+        .win-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 999;
+            animation: fadeIn 0.3s;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .win-message {
+            background: linear-gradient(145deg, #d4af37, #f4c542);
+            padding: 60px 80px;
+            border-radius: 30px;
+            text-align: center;
+            box-shadow: 0 0 60px rgba(212, 175, 55, 0.8);
+            animation: winPop 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            border: 4px solid #ff8c00;
+        }
+
+        @keyframes winPop {
+            0% { transform: scale(0) rotate(-180deg); }
+            100% { transform: scale(1) rotate(0deg); }
+        }
+
+        .win-message h2 {
+            font-size: 4rem;
+            color: #1a1a2e;
+            margin-bottom: 20px;
+            text-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .win-message p {
+            font-size: 1.5rem;
+            color: #0f2027;
+            margin-bottom: 30px;
+            font-weight: bold;
+        }
+
+        .close-button {
+            padding: 15px 40px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            background: #0f2027;
+            color: #d4af37;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 6px 15px rgba(15, 32, 39, 0.4);
+            transition: all 0.3s;
+        }
+
+        .close-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(15, 32, 39, 0.6);
+            background: #16213e;
+        }
+
+        @media (max-width: 768px) {
+            .casino-title {
+                font-size: 2rem;
+            }
+
+            .casino-subtitle {
+                font-size: 1rem;
+            }
+
+            .slot {
+                width: 70px;
+                height: 100px;
+            }
+
+            .slot-symbol {
+                height: 100px;
+                font-size: 2.5rem;
+            }
+
+            .spin-button {
+                padding: 15px 40px;
+                font-size: 1.4rem;
+            }
+
+            .stat-box {
+                min-width: 120px;
+                padding: 15px 20px;
+            }
+
+            .stat-value {
+                font-size: 1.5rem;
+            }
+
+            .casino-container {
+                padding: 30px 20px;
+            }
+
+            .slot-machine {
+                padding: 20px;
+            }
+
+            .moon {
+                width: 80px;
+                height: 80px;
+                top: 20px;
+                right: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="moon"></div>
+    <div class="stars" id="stars"></div>
+    <div class="fireworks" id="fireworks"></div>
+
+    <div class="win-overlay" id="winOverlay">
+        <div class="win-message">
+            <h2>☪️ مَبْرُوك ☪️</h2>
+            <p>Поздравляем! Вы собрали слово!</p>
+            <button class="close-button" onclick="closeWinMessage()">Продолжить</button>
+        </div>
+    </div>
+
+    <div class="casino-container">
+        <svg class="ornament ornament-tl" viewBox="0 0 100 100" fill="#d4af37">
+            <path d="M0,0 Q25,0 25,25 Q25,0 50,0 L50,50 Q25,50 25,25 Q0,25 0,50 Z"/>
+        </svg>
+        <svg class="ornament ornament-tr" viewBox="0 0 100 100" fill="#d4af37">
+            <path d="M0,0 Q25,0 25,25 Q25,0 50,0 L50,50 Q25,50 25,25 Q0,25 0,50 Z"/>
+        </svg>
+        <svg class="ornament ornament-bl" viewBox="0 0 100 100" fill="#d4af37">
+            <path d="M0,0 Q25,0 25,25 Q25,0 50,0 L50,50 Q25,50 25,25 Q0,25 0,50 Z"/>
+        </svg>
+        <svg class="ornament ornament-br" viewBox="0 0 100 100" fill="#d4af37">
+            <path d="M0,0 Q25,0 25,25 Q25,0 50,0 L50,50 Q25,50 25,25 Q0,25 0,50 Z"/>
+        </svg>
+
+        <div class="casino-header">
+            <h1 class="casino-title">☪️ ALLAH-DEP ☪️</h1>
+            <p class="casino-subtitle">Восточное казино удачи</p>
+        </div>
+
+        <div class="slot-machine">
+            <div class="pattern-overlay"></div>
+            <div class="slots-container">
+                <div class="slot">
+                    <div class="slot-reel" id="reel0"></div>
+                    <div class="slot-highlight" id="highlight0"></div>
+                </div>
+                <div class="slot">
+                    <div class="slot-reel" id="reel1"></div>
+                    <div class="slot-highlight" id="highlight1"></div>
+                </div>
+                <div class="slot">
+                    <div class="slot-reel" id="reel2"></div>
+                    <div class="slot-highlight" id="highlight2"></div>
+                </div>
+                <div class="slot">
+                    <div class="slot-reel" id="reel3"></div>
+                    <div class="slot-highlight" id="highlight3"></div>
+                </div>
+                <div class="slot">
+                    <div class="slot-reel" id="reel4"></div>
+                    <div class="slot-highlight" id="highlight4"></div>
+                </div>
+            </div>
+
+            <div class="controls">
+                <button class="spin-button" id="spinButton" onclick="spin()">
+                    <span>☪️ КРУТИТЬ</span>
+                </button>
+                
+                <div class="stats">
+                    <div class="stat-box">
+                        <div class="stat-label">Попыток</div>
+                        <div class="stat-value" id="spins">0</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-label">Побед</div>
+                        <div class="stat-value" id="wins">0</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-label">Процент</div>
+                        <div class="stat-value" id="percentage">0%</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="message" id="message">Нажмите "КРУТИТЬ" чтобы начать!</div>
+    </div>
+
+    <script>
+        const targetWord = ['أ', 'ل', 'ل', 'ا', 'ه']; // ALLAH in Arabic
+        const symbols = ['ا', 'ب', 'ت', 'ث', 'ج', 'ح', 'خ', 'د', 'ذ', 'ر', 'ز', 'س', 'ش', 'ص', 'ض', 'ط', 'ظ', 'ع', 'غ', 'ف', 'ق', 'ك', 'ل', 'م', 'ن', 'ه', 'و', 'ي', 'أ'];
+        
+        let spins = 0;
+        let wins = 0;
+        let spinning = false;
+
+        // Create stars
+        const starsContainer = document.getElementById('stars');
+        for (let i = 0; i < 150; i++) {
+            const star = document.createElement('div');
+            star.className = 'star';
+            star.style.left = Math.random() * 100 + '%';
+            star.style.top = Math.random() * 100 + '%';
+            star.style.animationDelay = Math.random() * 3 + 's';
+            starsContainer.appendChild(star);
+        }
+
+        // Initialize reels
+        function initReels() {
+            for (let i = 0; i < 5; i++) {
+                const reel = document.getElementById(`reel${i}`);
+                for (let j = 0; j < 50; j++) {
+                    const symbol = document.createElement('div');
+                    symbol.className = 'slot-symbol';
+                    symbol.textContent = symbols[Math.floor(Math.random() * symbols.length)];
+                    reel.appendChild(symbol);
+                }
+            }
+        }
+
+        initReels();
+
+        async function spin() {
+            if (spinning) return;
+            
+            spinning = true;
+            spins++;
+            document.getElementById('spins').textContent = spins;
+            document.getElementById('spinButton').disabled = true;
+            document.getElementById('message').textContent = '☪️ Крутим...';
+
+            // Clear highlights
+            for (let i = 0; i < 5; i++) {
+                document.getElementById(`highlight${i}`).classList.remove('active');
+            }
+
+            const results = [];
+            const spinDurations = [1000, 1300, 1600, 1900, 2200];
+
+            // Spin each reel
+            const spinPromises = [];
+            for (let i = 0; i < 5; i++) {
+                spinPromises.push(spinReel(i, spinDurations[i]));
+            }
+
+            await Promise.all(spinPromises);
+
+            // Get results
+            for (let i = 0; i < 5; i++) {
+                const reel = document.getElementById(`reel${i}`);
+                const symbols = reel.querySelectorAll('.slot-symbol');
+                const topPosition = parseInt(reel.style.top || 0);
+                const index = Math.abs(Math.round(topPosition / 140));
+                results.push(symbols[index].textContent);
+            }
+
+            // Check for win
+            checkWin(results);
+            
+            spinning = false;
+            document.getElementById('spinButton').disabled = false;
+        }
+
+        function spinReel(index, duration) {
+            return new Promise((resolve) => {
+                const reel = document.getElementById(`reel${index}`);
+                const startTime = Date.now();
+                
+                // Determine final symbol
+                const targetSymbol = targetWord[index];
+                const shouldWin = Math.random() < 0.18; // 18% chance for correct letter
+                
+                const symbols = reel.querySelectorAll('.slot-symbol');
+                let targetIndex = -1;
+                
+                if (shouldWin) {
+                    // Find target symbol
+                    for (let i = 0; i < symbols.length; i++) {
+                        if (symbols[i].textContent === targetSymbol) {
+                            targetIndex = i;
+                            break;
+                        }
+                    }
+                }
+                
+                if (targetIndex === -1) {
+                    targetIndex = Math.floor(Math.random() * symbols.length);
+                }
+                
+                // Calculate positions
+                const symbolHeight = 140;
+                const startPosition = 0;
+                const spins = 5;
+                const totalDistance = (spins * symbols.length + targetIndex) * symbolHeight;
+                
+                const animate = () => {
+                    const elapsed = Date.now() - startTime;
+                    const progress = Math.min(elapsed / duration, 1);
+                    
+                    const easeOut = 1 - Math.pow(1 - progress, 3);
+                    
+                    const currentPosition = -(totalDistance * easeOut);
+                    reel.style.top = currentPosition + 'px';
+                    
+                    if (progress < 1) {
+                        requestAnimationFrame(animate);
+                    } else {
+                        const finalPosition = -(targetIndex * symbolHeight);
+                        reel.style.top = finalPosition + 'px';
+                        resolve();
+                    }
+                };
+                
+                animate();
+            });
+        }
+
+        function checkWin(results) {
+            let correctCount = 0;
+            const correctIndices = [];
+            
+            for (let i = 0; i < 5; i++) {
+                if (results[i] === targetWord[i]) {
+                    correctCount++;
+                    correctIndices.push(i);
+                    document.getElementById(`highlight${i}`).classList.add('active');
+                }
+            }
+
+            if (correctCount === 5) {
+                wins++;
+                document.getElementById('wins').textContent = wins;
+                document.getElementById('message').textContent = '☪️ مَبْرُوك! Вы собрали الله! ☪️';
+                showWinOverlay();
+                createFireworks();
+            } else if (correctCount >= 3) {
+                document.getElementById('message').textContent = `✨ Отлично! ${correctCount} из 5 букв правильно!`;
+            } else if (correctCount === 2) {
+                document.getElementById('message').textContent = `🌙 Неплохо! ${correctCount} из 5 букв правильно!`;
+            } else if (correctCount === 1) {
+                document.getElementById('message').textContent = '⭐ Попробуйте ещё раз! 1 из 5 букв правильно';
+            } else {
+                document.getElementById('message').textContent = '😔 Ни одной буквы! Попробуйте снова!';
+            }
+
+            const percentage = ((wins / spins) * 100).toFixed(1);
+            document.getElementById('percentage').textContent = percentage + '%';
+        }
+
+        function showWinOverlay() {
+            document.getElementById('winOverlay').style.display = 'flex';
+        }
+
+        function closeWinMessage() {
+            document.getElementById('winOverlay').style.display = 'none';
+        }
+
+        function createFireworks() {
+            const container = document.getElementById('fireworks');
+            const colors = ['#d4af37', '#ff8c00', '#40e0d0', '#ffd700', '#ff6347'];
+            
+            for (let i = 0; i < 6; i++) {
+                setTimeout(() => {
+                    const x = Math.random() * window.innerWidth;
+                    const y = Math.random() * window.innerHeight * 0.5;
+                    
+                    for (let j = 0; j < 40; j++) {
+                        const firework = document.createElement('div');
+                        firework.className = 'firework';
+                        firework.style.left = x + 'px';
+                        firework.style.top = y + 'px';
+                        firework.style.background = colors[Math.floor(Math.random() * colors.length)];
+                        
+                        const angle = (Math.PI * 2 * j) / 40;
+                        const velocity = 100 + Math.random() * 100;
+                        const tx = Math.cos(angle) * velocity;
+                        const ty = Math.sin(angle) * velocity;
+                        
+                        firework.style.setProperty('--tx', tx + 'px');
+                        firework.style.setProperty('--ty', ty + 'px');
+                        
+                        container.appendChild(firework);
+                        
+                        setTimeout(() => firework.remove(), 1000);
+                    }
+                }, i * 300);
+            }
+        }
+
+        // Keyboard support
+        document.addEventListener('keydown', (e) => {
+            if (e.code === 'Space' && !spinning) {
+                e.preventDefault();
+                spin();
+            }
+        });
+    </script>
+</body>
+  </html>
